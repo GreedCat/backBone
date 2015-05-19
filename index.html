@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
 </head>
 <body>
+<!-- 输入一组 script 标签 ... 然后设置一下它的 type 属性 ... 一般可以设置成 text/template，这样浏览器就不会把它当成是 JavaScript 去处理了。 ... 然后在上面，再去定义一个 id ... 这个 id 就是这个模板的名字. -->
+
+<!-- 在这组 script 标签里面，就是模板的具体的形式 ... 因为我们要用的是 Underscroe 的模板功能。所以，可以使用这样的形式来输出模型里的属性的值 ... 小于号百分号，加上一个等于号 ... 空格 ... 然后是属性的名字 ... 结束的地方，再输入一个百分号加上一个大于号 ... -->
+
+<!-- 代码会输出模型里面的 title 这个属性的值 ... 也就是，可以使用它来表示模型里面的 title 属性 ... -->
+	<script type="text/template" id="list-template">
+		<span><%= title %></span><small class="pull-right"><%= date %></small>
+	</script>
     <script src="lib/js/jquery.js"></script>
     <script src="lib/js/underscore.min.js"></script>
     <script src="lib/js/backbone.min.js"></script>

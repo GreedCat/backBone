@@ -31,15 +31,23 @@
 	// 使用save方法保存属性打服务器端 ,save成功后会依次触发模型的“change”、“request”、“sync”事件。如果监听了这些事件，那么回调将得到执行
 	var	graceObj_ = new Grace();
 	// 第一次使用save相当于create也就是添加数据到服务器端
-	graceObj_.save({'name':'Grace','age',20});
+
+	// graceObj_.save({'name':'Grace','age':20});
+
 	// 第二次使用save相当于update(更新)第一次提交到服务器端的数据
-	graceObj_.save({'name':'Grace_1','age',22});
+
+	// graceObj_.save({'name':'Grace_1','age':22});
  
 	// 可以传success和error两个回调函数以处理保存成功和保存失败场景,如：
-	graceObj_.save({'name':'Grace_1','age',22},{
-		success	: function(){},
-		error	: function(){}
-	});
+
+	// graceObj_.save({'name':'Grace_1','age':22},{
+	// 	success	: function(){},
+	// 	error	: function(){}
+	// });
+
+
+
+
 // 获取属性
 	
 	// 使用model.attributes获取所有属性返回一个对象
