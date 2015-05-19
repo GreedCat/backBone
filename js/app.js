@@ -27,7 +27,19 @@
 	graceObj.set({name:'Grace',age:'20',location:'南京',created_at:new Date()});
 
 
+// 保存属性到服务器端
+	// 使用save方法保存属性打服务器端 ,save成功后会依次触发模型的“change”、“request”、“sync”事件。如果监听了这些事件，那么回调将得到执行
+	var	graceObj_ = new Grace();
+	// 第一次使用save相当于create也就是添加数据到服务器端
+	graceObj_.save({'name':'Grace','age',20});
+	// 第二次使用save相当于update(更新)第一次提交到服务器端的数据
+	graceObj_.save({'name':'Grace_1','age',22});
 
+	// 可以传success和error两个回调函数以处理保存成功和保存失败场景,如：
+	graceObj_.save({'name':'Grace_1','age',22},{
+		success	: function(){},
+		error	: function(){}
+	});
 // 获取属性
 	
 	// 使用model.attributes获取所有属性返回一个对象
@@ -62,7 +74,7 @@
 			age : 20,
 			date: new Date()
 		},
-		//基于某一个模型创建了实例之后会立即去调用方法，在这个方法里我们可以去监听属性变化的事件等 ....
+		//基于某一个模型创建了实例之后会立即去调用initialize方法，在这个方法里我们可以去监听属性变化的事件等 ....
 		initialize: function(){
 			// this为被创建的对象/为被实例化的对象
 			console.log("欢迎你来到backbone的世界"+this.get('name'));
@@ -82,6 +94,12 @@
 		 	this.on('change:name',function(model,options){
 		 		console.log("name属性的值发生了变化");
 		 	});
+
+		 	// 第三个参数中silent为true时，将不会触发“change”事件。如：
+		 	// grace.set({'name':'Grace','age',20},{silent:true})
+
+
+
 			// 监听验证失败之后执行的事件, 参数为当前模型对象及error错误信息 ， 这边的error指向validate方法中定义的错误信息
 			this.on('invalid',function(model,error){
 				console.log(error);
@@ -93,6 +111,9 @@
 		* 验证通过以后，才能去执行这些动作，不然的话，就会返回一个 false ，还有一条事先设置好的错误信息。
 		* function支持两个参数 ，第一个为属性(attributes),第二个为选项(options)
 		*/
+
+		// 注： 验证失败则不会执行change事件
+
 		// 执行方法时 需带上{validate,true} 如：grace.set('age',18,{validate:true})
 		validate: function(attributes,options){
 			if(attributes.age < 20){
